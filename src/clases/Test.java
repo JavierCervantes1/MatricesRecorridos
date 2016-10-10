@@ -29,7 +29,7 @@ public class Test {
         m[3][2]=12;
         
         
-        System.out.println(Helper.recorridoHaciaAbajo(m, 1));
+        System.out.println(Helper.recorridoHaciaDerecha(m, 0, 0, 3));
         
         
     }

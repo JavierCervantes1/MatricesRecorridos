@@ -99,7 +99,7 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 320, 160));
 
-        cmbOperaciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Recorrido S", "Recorrido2", "Diagonal Principal", "Letra C", "Letra H", "Recorrido 1", "Recorrido 2", " " }));
+        cmbOperaciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Recorrido S", "Recorrido 2", "Recorrido Caracol", "Recorrido Z", "Recorrido M", " " }));
         jPanel1.add(cmbOperaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 130, -1));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Acciones"));
@@ -296,18 +296,11 @@ public class Principal extends javax.swing.JFrame {
 
             break;
             case 3:
+                txtResultado.setText(Helper.recorridoZ(tblMatrizInicial));
 
             break;
             case 4:
-
-            break;
-
-            case 5:
-
-            txtResultado.setText(Helper.recorridoUno(tblMatrizInicial));
-            break;
-            case 6:
-
+                txtResultado.setText(Helper.recorridoM(tblMatrizInicial));
 
             break;
         }

@@ -143,15 +143,13 @@
         <Component class="javax.swing.JComboBox" name="cmbOperaciones">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="8">
+              <StringArray count="6">
                 <StringItem index="0" value="Recorrido S"/>
-                <StringItem index="1" value="Recorrido2"/>
-                <StringItem index="2" value="Diagonal Principal"/>
-                <StringItem index="3" value="Letra C"/>
-                <StringItem index="4" value="Letra H"/>
-                <StringItem index="5" value="Recorrido 1"/>
-                <StringItem index="6" value="Recorrido 2"/>
-                <StringItem index="7" value=" "/>
+                <StringItem index="1" value="Recorrido 2"/>
+                <StringItem index="2" value="Recorrido Caracol"/>
+                <StringItem index="3" value="Recorrido Z"/>
+                <StringItem index="4" value="Recorrido M"/>
+                <StringItem index="5" value=" "/>
               </StringArray>
             </Property>
           </Properties>
