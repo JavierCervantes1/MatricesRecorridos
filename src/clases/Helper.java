@@ -148,23 +148,6 @@ public class Helper {
         return aux;
     }
 
-    public static String recorridouno(JTable tabla1) {
-        int m[][] = pasarDatosMatriz(tabla1);
-        int nc = m[0].length;
-        String aux = "";
-
-        for (int j = 0; j < nc; j++) {
-            if (j % 2 == 0) {
-                aux = aux + recorridoHaciaArriba(m, j);
-            } else {
-                aux = aux + recorridoHaciaAbajo(m, j);
-            }
-
-        }
-        aux = aux.substring(0, aux.length() - 2);
-        return aux;
-    }
-
     public static String recorridoHaciaIzquierda(int[][] m, int i) {
         String aux = "";
         int nc = m[0].length;
@@ -255,26 +238,10 @@ public class Helper {
         return aux;
     }
 
-    public static String recorridodos(JTable tabla1) {
+    public static String recorridoS(JTable tabla1) {
         int[][] m = pasarDatosMatriz(tabla1);
         int nf = m.length;
-        String aux = "";
-        for (int i = 0; i < nf; i++) {
-            if (i % 2 == 0) {
-                aux = aux + Helper.recorridoHaciaIzquierda(m, i);
-            } else {
-                aux = aux + Helper.recorridoHaciaDerecha(m, i);
-            }
 
-        }
-        aux = aux.substring(0, aux.length() - 2);
-        return aux;
-    }
-
-    public static String recorridoUno(JTable tabla1) {
-        int[][] m = pasarDatosMatriz(tabla1);
-        int nf = m.length;
-        int nc = m[0].length;
         String aux = "";
         for (int i = 0; i < nf; i++) {
             if (i == 0) {
@@ -298,7 +265,7 @@ public class Helper {
         return aux;
     }
     public static String recorridoZ(JTable tabla){
-        int m[][],in,fin,nf,nc;
+        int m[][],nf,nc;
         m = pasarDatosMatriz(tabla);
         String aux = "";
         nf = m.length;
@@ -315,7 +282,7 @@ public class Helper {
         
     }
     public static String recorridoM(JTable tabla){
-        int m[][],in,fin,nf,nc;
+        int m[][],nf,nc;
         m = pasarDatosMatriz(tabla);
         String aux = "";
         nf = m.length;
@@ -328,6 +295,61 @@ public class Helper {
         aux = aux + Helper.recorridoDiagonalSecundariaArriba(m, ((nf-1)/2)-1, 0);
         
         aux = aux + Helper.recorridoHaciaAbajo(m, nc-1, 1, nf);
+    
+        return aux;
+        
+        
+    }
+    public static String recorridoDos(JTable tabla){
+        int m[][],nf,nc;
+        m = pasarDatosMatriz(tabla);
+        String aux = "";
+        nf = m.length;
+        nc = m[0].length;
+        
+        aux = aux + Helper.recorridoHaciaArriba(m, 0);
+        
+        aux = aux + Helper.recorridoHaciaDerecha(m, 0, 1, (nc-1)/2);
+        
+        aux = aux + Helper.recorridoHaciaAbajo(m, (nc-1)/2, 0, nf-1);
+        
+        aux = aux + Helper.recorridoHaciaDerecha(m, nf-1, (nc-1)/2, nc-1);
+        
+        aux = aux + Helper.recorridoHaciaArriba(m, nc-1);
+    
+        return aux;
+        
+        
+    }
+    public static String recorridoCaracol(JTable tabla){
+        int m[][],nf,nc;
+        m = pasarDatosMatriz(tabla);
+        String aux = "";
+        nf = m.length;
+        nc = m[0].length;
+        
+        aux = aux + Helper.recorridoHaciaDerecha(m, (nf-1)/2, ((nc-1)/2), ((nc-1)/2)+1);
+        
+        aux = aux + Helper.recorridoHaciaAbajo(m, ((nc-1)/2)+1, ((nf-1)/2), ((nf-1)/2)+1);
+        
+        aux = aux + Helper.recorridoHaciaIzquierda(m, ((nf-1)/2)+1, ((nc-1)/2)+1,((nc-1)/2)-1);
+        
+        aux = aux + Helper.recorridoHaciaArriba(m, 1, ((nf-1)/2), ((nf-1)/2)-1);
+        
+        aux = aux + Helper.recorridoHaciaDerecha(m, 1, (nc-1)/2, ((nc-1)/2)+2);
+        
+        aux = aux + Helper.recorridoHaciaAbajo(m, nc-2, 1, nf-1);
+        
+        aux = aux + Helper.recorridoHaciaIzquierda(m, nf-2, nc-3, 1);
+        
+        aux = aux + Helper.recorridoHaciaArriba(m, 0, nf-2, 1);
+        
+        aux = aux + Helper.recorridoHaciaDerecha(m, 0, 0, nc-1);
+        
+        aux = aux + Helper.recorridoHaciaAbajo(m, nc-1, 0, nf-1);
+        
+        aux = aux +  Helper.recorridoHaciaIzquierda(m, nf-1, nc-1, 0);
+        
     
         return aux;
         

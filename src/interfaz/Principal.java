@@ -14,12 +14,18 @@ import javax.swing.table.DefaultTableModel;
  * @author Javier Tareas
  */
 public class Principal extends javax.swing.JFrame {
+    double n;
+    int sw;
 
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
+        JButton botonesH[] = {cmdCrear, cmdLimpiar};
+        JButton botonesD[] = {cmdOperacion, cmdLlenadoManual, cmdLlenadoAutomatico};
+        Helper.habilitarBotones(botonesH);
+        Helper.deshabilitarBotones(botonesD);
     }
 
     /**
@@ -36,8 +42,6 @@ public class Principal extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtResultado = new javax.swing.JTextArea();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblMatrizResultante = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblMatrizInicial = new javax.swing.JTable();
         cmbOperaciones = new javax.swing.JComboBox();
@@ -50,8 +54,8 @@ public class Principal extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtNumeroFilas = new javax.swing.JTextField();
-        txtNumeroColumnas = new javax.swing.JTextField();
+        txtNumerodeFilas = new javax.swing.JTextField();
+        txtNumerodeColumnas = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,22 +73,9 @@ public class Principal extends javax.swing.JFrame {
         txtResultado.setRows(5);
         jScrollPane3.setViewportView(txtResultado);
 
-        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 550, 120));
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 330, 210));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 580, 160));
-
-        tblMatrizResultante.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        tblMatrizResultante.setEnabled(false);
-        jScrollPane1.setViewportView(tblMatrizResultante);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, 320, 160));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 130, 360, 250));
 
         tblMatrizInicial.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -97,10 +88,10 @@ public class Principal extends javax.swing.JFrame {
         tblMatrizInicial.setEnabled(false);
         jScrollPane2.setViewportView(tblMatrizInicial);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 320, 160));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 370, 230));
 
         cmbOperaciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Recorrido S", "Recorrido 2", "Recorrido Caracol", "Recorrido Z", "Recorrido M", " " }));
-        jPanel1.add(cmbOperaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 130, -1));
+        jPanel1.add(cmbOperaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, 140, -1));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Acciones"));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -145,7 +136,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jPanel4.add(cmdOperacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, -1, -1));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, 470, 70));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 40, 470, 70));
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Iniciales"));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -155,8 +146,8 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel7.setText("Número de Filas: ");
         jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 20));
-        jPanel5.add(txtNumeroFilas, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 30, -1));
-        jPanel5.add(txtNumeroColumnas, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 30, -1));
+        jPanel5.add(txtNumerodeFilas, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 30, -1));
+        jPanel5.add(txtNumerodeColumnas, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 30, -1));
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 360, 70));
 
@@ -164,37 +155,83 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 903, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 934, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
-        DefaultTableModel tm, tm2;
+        DefaultTableModel tm;
         int nf, nc;
-        tm = (DefaultTableModel) tblMatrizInicial.getModel();
-        tm2 = (DefaultTableModel) tblMatrizResultante.getModel();
+        sw = 1;
+        
+        if (txtNumerodeFilas.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Digite el numero de filas", "Error", 2);
+            txtNumerodeFilas.requestFocusInWindow();
+            sw = 0;
+        } else if (txtNumerodeColumnas.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Digite el numero de columnas", "Error", 2);
+            txtNumerodeColumnas.requestFocusInWindow();
+            sw = 0;
+        } else {
+            try {
+                nf = Integer.parseInt(txtNumerodeFilas.getText());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Ingrese el numero de filas correctamente", "Error", 2);
+                txtNumerodeFilas.requestFocusInWindow();
+                txtNumerodeFilas.selectAll();
+                sw = 0;
+            }
+            try {
+                nc = Integer.parseInt(txtNumerodeColumnas.getText());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Ingrese el numero de columnas correctamente", "Error", 2);
+                txtNumerodeColumnas.requestFocusInWindow();
+                txtNumerodeColumnas.selectAll();
+                sw = 0;
+            }
+        }
+        if (sw == 1) {
 
-        nf = Integer.parseInt(txtNumeroFilas.getText());
-        nc = Integer.parseInt(txtNumeroColumnas.getText());
+            nf = Integer.parseInt(txtNumerodeFilas.getText());
+            nc = Integer.parseInt(txtNumerodeColumnas.getText());
 
-        tm.setRowCount(nf);
-        tm.setColumnCount(nc);
+            if (nf < 15 && nc < 15) {
+                if (nc > 0 && nf > 0) {
 
-        tm2.setRowCount(nf);
-        tm2.setColumnCount(nc);
+                    tm = (DefaultTableModel) tblMatrizInicial.getModel();
 
-        JButton botonesH[] = {cmdLlenadoAutomatico, cmdLlenadoManual, cmdLimpiar};
-        JButton botonesD[] = {cmdCrear, cmdOperacion};
-        Helper.habilitarBotones(botonesH);
-        Helper.deshabilitarBotones(botonesD);
+                    tm.setRowCount(nf);
+                    tm.setColumnCount(nc);
+                    
+                    JButton botonesH[] = {cmdLlenadoAutomatico, cmdLlenadoManual, cmdLimpiar};
+                    JButton botonesD[] = {cmdCrear, cmdOperacion};
+                    Helper.habilitarBotones(botonesH);
+                    Helper.deshabilitarBotones(botonesD);
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se permiten valores negativos", "Error", 2);
+                    txtNumerodeColumnas.setText("");
+                    txtNumerodeFilas.requestFocusInWindow();
+                    txtNumerodeFilas.selectAll();
+                    JButton botonesD[] = {cmdLlenadoAutomatico, cmdLlenadoManual, cmdLimpiar, cmdOperacion};
+                    Helper.deshabilitarBotones(botonesD);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Ha excedido el limite de filas y columnas disponibles", "Error", 2);
+                txtNumerodeColumnas.setText("");
+                txtNumerodeFilas.requestFocusInWindow();
+                txtNumerodeFilas.selectAll();
+                JButton botonesD[] = {cmdLlenadoAutomatico, cmdLlenadoManual, cmdLimpiar, cmdOperacion};
+                Helper.deshabilitarBotones(botonesD);
+            }
+        }
     }//GEN-LAST:event_cmdCrearActionPerformed
 
     private void cmdLlenadoManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenadoManualActionPerformed
@@ -212,6 +249,10 @@ public class Principal extends javax.swing.JFrame {
                     try {
                         n = Double.parseDouble(Helper.recibirDatos(this, "Digite el elemento en la posición: [" + i + "][" + j + "]"));
                         tblMatrizInicial.setValueAt((int) n, i, j);
+                        JButton botonesH[] = {cmdOperacion, cmdLimpiar};
+                        JButton botonesD[] = {cmdCrear, cmdLlenadoManual, cmdLlenadoAutomatico};
+                        Helper.habilitarBotones(botonesH);
+                        Helper.deshabilitarBotones(botonesD);
                     } catch (NumberFormatException e) {
                         JOptionPane.showMessageDialog(this, "Digite la información correctamente", "Error", JOptionPane.ERROR_MESSAGE);
                         aux = 0;
@@ -224,7 +265,12 @@ public class Principal extends javax.swing.JFrame {
                             i = nf;
                             sw = false;
                             Helper.tablaPorDefecto(tblMatrizInicial);
-                            Helper.tablaPorDefecto(tblMatrizResultante);
+                            txtNumerodeFilas.setText("");
+                            txtNumerodeColumnas.setText("");
+                            JButton botonesH[] = {cmdCrear, cmdLimpiar};
+                            JButton botonesD[] = {cmdOperacion, cmdLlenadoManual, cmdLlenadoAutomatico};
+                            Helper.habilitarBotones(botonesH);
+                            Helper.deshabilitarBotones(botonesD);
                         } else {
                             aux = 0;
                         }
@@ -235,10 +281,6 @@ public class Principal extends javax.swing.JFrame {
             }
 
         }
-        JButton botonesH[] = {cmdOperacion, cmdLimpiar};
-        JButton botonesD[] = {cmdCrear, cmdLlenadoManual, cmdLlenadoAutomatico};
-        Helper.habilitarBotones(botonesH);
-        Helper.deshabilitarBotones(botonesD);
     }//GEN-LAST:event_cmdLlenadoManualActionPerformed
 
     private void cmdLlenadoAutomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenadoAutomaticoActionPerformed
@@ -263,11 +305,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void cmdLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLimpiarActionPerformed
         Helper.tablaPorDefecto(tblMatrizInicial);
-        Helper.tablaPorDefecto(tblMatrizResultante);
 
-        txtNumeroFilas.setText("");
-        txtNumeroColumnas.setText("");
-        txtNumeroFilas.requestFocusInWindow();
+        txtNumerodeFilas.setText("");
+        txtNumerodeColumnas.setText("");
+        txtNumerodeFilas.requestFocusInWindow();
         cmbOperaciones.setSelectedIndex(0);
         txtResultado.setText("");
 
@@ -284,31 +325,68 @@ public class Principal extends javax.swing.JFrame {
         nf = tblMatrizInicial.getRowCount();
         nc = tblMatrizInicial.getColumnCount();
 
-        Helper.limpiarTabla(tblMatrizResultante);
         switch (op) {
             case 0:
-            txtResultado.setText(Helper.recorridoUno(tblMatrizInicial));
-            break;
+                if (nf>4 && nc>2){
+            txtResultado.setText(Helper.recorridoS(tblMatrizInicial));
+                } else {
+                    JOptionPane.showMessageDialog(this, "Incorrectas filas y columnas para hacer el recorrido S", "Error", 2);
+                    txtNumerodeFilas.requestFocusInWindow();
+                    txtNumerodeFilas.selectAll();
+                    sw = 0;
+                }
+                break;
             case 1:
-            
+                if (nc > 4 && nf > 2){
+                txtResultado.setText(Helper.recorridoDos(tblMatrizInicial));
+                }else {
+                    JOptionPane.showMessageDialog(this, "Incorrectas filas y columnas para hacer el recorrido 2", "Error", 2);
+                    txtNumerodeFilas.requestFocusInWindow();
+                    txtNumerodeFilas.selectAll();
+                    sw = 0;
+                }
             break;
             case 2:
-
+                //Corregir
+                if (nc>5 && nf>5){
+                txtResultado.setText(Helper.recorridoCaracol(tblMatrizInicial));
+                }else {
+                    JOptionPane.showMessageDialog(this, "Incorrectas filas y columnas para hacer el recorrido caracol", "Error", 2);
+                    txtNumerodeFilas.requestFocusInWindow();
+                    txtNumerodeFilas.selectAll();
+                    sw = 0;
+                }
+                
             break;
             case 3:
+                if (nc > 2 && nf > 2 && nc==nf){
                 txtResultado.setText(Helper.recorridoZ(tblMatrizInicial));
-
+                }else {
+                    JOptionPane.showMessageDialog(this, "Incorrectas filas y columnas para hacer el recorrido Z"
+                            + "\n" + "Asegurese de ingresar una matriz cuadrada", "Error", 2);
+                    txtNumerodeFilas.requestFocusInWindow();
+                    txtNumerodeFilas.selectAll();
+                    sw = 0;
+                }
             break;
             case 4:
+                if (nc % 2 != 0 && nc > 2 && nf > 3){
                 txtResultado.setText(Helper.recorridoM(tblMatrizInicial));
-
+                }else {
+                    JOptionPane.showMessageDialog(this, "Incorrectas filas y columnas para hacer el recorrido M"
+                            + "\n" + "Asegurese de ingresar valores impares en clomunas", "Error", 2);
+                    txtNumerodeFilas.requestFocusInWindow();
+                    txtNumerodeFilas.selectAll();
+                    sw = 0;
+                }
             break;
         }
-
-        JButton botonesH[] = {cmdOperacion, cmdLimpiar};
-        JButton botonesD[] = {cmdCrear, cmdLlenadoAutomatico, cmdLlenadoManual};
-        Helper.habilitarBotones(botonesH);
-        Helper.deshabilitarBotones(botonesD);
+            if (sw == 0) {
+            JButton botonesH[] = {cmdCrear, cmdLimpiar};
+            JButton botonesD[] = {cmdOperacion, cmdLlenadoAutomatico, cmdLlenadoManual};
+            Helper.habilitarBotones(botonesH);
+            Helper.deshabilitarBotones(botonesD);
+        }
     }//GEN-LAST:event_cmdOperacionActionPerformed
 
     /**
@@ -360,13 +438,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tblMatrizInicial;
-    private javax.swing.JTable tblMatrizResultante;
-    private javax.swing.JTextField txtNumeroColumnas;
-    private javax.swing.JTextField txtNumeroFilas;
+    private javax.swing.JTextField txtNumerodeColumnas;
+    private javax.swing.JTextField txtNumerodeFilas;
     private javax.swing.JTextArea txtResultado;
     // End of variables declaration//GEN-END:variables
 }
